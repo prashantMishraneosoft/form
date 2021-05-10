@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cubit/flutter_cubit.dart';
+import 'package:registeration_form/components/input_box.dart';
 import 'package:registeration_form/cubit/base/base_state.dart';
 import 'package:registeration_form/cubit/infoCubit/info_cubit.dart';
 import 'file:///F:/stateNeosoft/registerationForm/lib/cubit/registerCubit/registration_cubit.dart';
@@ -7,7 +8,6 @@ import 'file:///F:/stateNeosoft/registerationForm/lib/views/yourAddressScreen.da
 import 'package:registeration_form/utils/appStrings.dart';
 import 'package:registeration_form/utils/constants.dart';
 import 'package:registeration_form/utils/validator.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
 class YourInfo extends StatefulWidget {
 
   dynamic info;
@@ -125,81 +125,26 @@ class _YourInfoState extends State<YourInfo> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(
-                          'Year of Passing*',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.only(
-                            top: 5,
-                          ),
-                          child:  TextFormField(
-                              controller: yearOfPassing,
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.datetime,
-                              maxLines: 1,
-                              style: TextStyle(fontSize: 16.0),
-                              decoration: InputDecoration(
-                                contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                                hintText: "Year of Passing",
-                                border: OutlineInputBorder(
-                                  borderSide:
-                                  BorderSide(color: Colors.black, width: 32.0),
-                                ),
-                              ),
-                              validator:(value) {
-                                return Validator.validateFormField(
-                                    value,
-                                    strErrorEmptyPassingYear,
-                                    strInvalidPassingYear,
-                                    Constants.NORMAL_VALIDATION);
-                              })
-
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(
-                          'Grade*',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 5,bottom: 10,
-                        ),
-                        child: TextFormField(
-                          controller: grade,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.number,
-                          maxLines: 1,
-                          style: TextStyle(fontSize: 16.0),
-                          decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            hintText: "Enter your Grade Or Percentage",
-                            border: OutlineInputBorder(
-                              borderSide:
-                              BorderSide(color: Colors.black, width: 32.0),
-                            ),
-                          ),
+                      InputBox(labelText: 'Year of Passing*',
+                        hintText: "Year of Passing",
+                        controller: yearOfPassing,
                           validator:(value) {
                             return Validator.validateFormField(
                                 value,
-                                strErrorEmptyGrade,
-                                strInvalidGrade,
+                                strErrorEmptyPassingYear,
+                                strInvalidPassingYear,
                                 Constants.NORMAL_VALIDATION);
-                          },),
-                      ),
+                          }),
+                      InputBox(labelText: 'Grade*',
+                        hintText: "Enter your Grade Or Percentage",
+                        controller: grade,
+                        validator:(value) {
+                          return Validator.validateFormField(
+                              value,
+                              strErrorEmptyGrade,
+                              strInvalidGrade,
+                              Constants.NORMAL_VALIDATION);
+                        },),
                       Divider(thickness: 2,),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0),
@@ -211,163 +156,37 @@ class _YourInfoState extends State<YourInfo> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(
-                          'Experience*',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 5,
-                        ),
-                        child: TextFormField(
-                          controller: experience,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.number,
-                          maxLines: 1,
-                          style: TextStyle(fontSize: 16.0),
-                          decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            hintText: "Enter the years of experience",
-                            border: OutlineInputBorder(
-                              borderSide:
-                              BorderSide(color: Colors.black, width: 32.0),
-                            ),
-                            // focusedBorder: OutlineInputBorder(
-                            //   borderSide:
-                            //       BorderSide(color: Colors.black, width: 32.0),
-                            // )
-                          ),
-                          validator:(value) {
-                            return Validator.validateFormField(
-                                value,
-                                strErrorEmptyYearExperience,
-                                strInvalidYearExperience,
-                                Constants.NORMAL_VALIDATION);
-                          },),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(
-                          'Designation*',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 5,
-                        ),
+                      InputBox(labelText: 'Experience*',
+                        hintText: "Enter the years of experience",
+                        controller: experience,
+                        validator:(value) {
+                          return Validator.validateFormField(
+                              value,
+                              strErrorEmptyYearExperience,
+                              strInvalidYearExperience,
+                              Constants.NORMAL_VALIDATION);
+                        },),
+                      InputBox(labelText: 'Designation*',
+                        hintText: "Enter your Designation",
+                        controller: designation,
+                        validator:(value) {
+                          return Validator.validateFormField(
+                              value,
+                              strErrorEmptyDesignation,
+                              strInvalidDesignation,
+                              Constants.NORMAL_VALIDATION);
+                        } ,),
+                      InputBox(labelText: 'Domain*',
+                        hintText: "Enter your Domain",
+                        controller: domain,
+                        validator:(value) {
+                          return Validator.validateFormField(
+                              value,
+                              strErrorEmptyDomain,
+                              strInvalidDomain,
+                              Constants.NORMAL_VALIDATION);
+                        },),
 
-                        // child: DropdownButton<String>(
-                        //   underline: SizedBox(),
-                        //   isExpanded: true,
-                        //   hint: Padding(
-                        //     padding: const EdgeInsets.only(left: 10),
-                        //     child: Text('Select Designation'),
-                        //   ),
-                        //   items: <String>['A', 'B', 'C', 'D'].map((String value) {
-                        //     return new DropdownMenuItem<String>(
-                        //       value: value,
-                        //       child: new Text(value),
-                        //     );
-                        //   }).toList(),
-                        //   onChanged: (_) {},
-                        // ),
-                        child: TextFormField(
-                            controller: designation,
-                            validator:(value) {
-                              return Validator.validateFormField(
-                                  value,
-                                  strErrorEmptyDesignation,
-                                  strInvalidDesignation,
-                                  Constants.NORMAL_VALIDATION);
-                            } ,
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.text,
-                            maxLines: 1,
-                            style: TextStyle(fontSize: 16.0),
-                            decoration: InputDecoration(
-                              contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                              hintText: "Enter your Designation",
-                              border: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Colors.black, width: 32.0),
-                              ),
-                              // focusedBorder: OutlineInputBorder(
-                              //   borderSide:
-                              //       BorderSide(color: Colors.black, width: 32.0),
-                              // )
-                            )),
-
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(
-                          'Domain*',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 5,
-                        ),
-
-                        // child: DropdownButton<String>(
-                        //   underline: SizedBox(),
-                        //   isExpanded: true,
-                        //   hint: Padding(
-                        //     padding: const EdgeInsets.only(left: 10),
-                        //     child: Text('Select Your Domain'),
-                        //   ),
-                        //   items: <String>['A', 'B', 'C', 'D'].map((String value) {
-                        //     return new DropdownMenuItem<String>(
-                        //       value: value,
-                        //       child: new Text(value),
-                        //     );
-                        //   }).toList(),
-                        //   onChanged: (_) {},
-                        // ),
-                        child: TextFormField(
-                            controller: domain,
-                            validator:(value) {
-                              return Validator.validateFormField(
-                                  value,
-                                  strErrorEmptyDomain,
-                                  strInvalidDomain,
-                                  Constants.NORMAL_VALIDATION);
-                            },
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.text,
-                            maxLines: 1,
-                            style: TextStyle(fontSize: 16.0),
-                            decoration: InputDecoration(
-                              contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                              hintText: "Enter your Domain",
-                              border: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Colors.black, width: 32.0),
-                              ),
-                              // focusedBorder: OutlineInputBorder(
-                              //   borderSide:
-                              //       BorderSide(color: Colors.black, width: 32.0),
-                              // )
-                            )),
-
-                      ),
                     ],
                   )),
             ),

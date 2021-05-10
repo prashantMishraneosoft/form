@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_cubit/flutter_cubit.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:registeration_form/components/input_box.dart';
 import 'package:registeration_form/cubit/base/base_state.dart';
 import 'file:///F:/stateNeosoft/registerationForm/lib/cubit/registerCubit/registration_cubit.dart';
 import 'file:///F:/stateNeosoft/registerationForm/lib/views/yourInfoScreen.dart';
@@ -91,162 +92,55 @@ class _RegistrationscreenState extends State<Registrationscreen> {
                 shrinkWrap: true,
                 children: [
                   profilePhoto(),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      'First Name*',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 5,
-                    ),
-                    child: TextFormField(
-                      controller: firstName,
-                        textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.name,
-                        maxLines: 1,
-                        style: TextStyle(fontSize: 16.0),
-                        decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            prefixIcon: Icon(Icons.person,color: Color.fromRGBO(6, 58, 143, 1),),
-                            hintText: "Enter your first name here",
-                            border: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 32.0),
-                            ),
-                            ),
-                      validator: (value) {
-                        return Validator.validateFormField(
-                            value,
-                            strErrorEmptyFirstName,
-                            strInvalidFirstName,
-                            Constants.NORMAL_VALIDATION);
-                      },
-                   ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      'Last Name*',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 5,
-                    ),
-                    child: TextFormField(
-                      controller: lastName,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.name,
-                        maxLines: 1,
-                        style: TextStyle(fontSize: 16.0),
-                        decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            prefixIcon: Icon(Icons.person,color: Color.fromRGBO(6, 58, 143, 1),),
-                            hintText: "Enter your last name here",
-                            border: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 32.0),
-                            ),
-                            ),
+                  InputBox(labelText: 'First Name*',
+                  hintText: 'Enter your first name here',
+                  controller:firstName,
                     validator: (value) {
-                  return Validator.validateFormField(
-                  value,
-                  strErrorEmptyLastName,
-                  strInvalidLastName,
-                  Constants.NORMAL_VALIDATION);
-                  }, ),
+                      return Validator.validateFormField(
+                          value,
+                          strErrorEmptyFirstName,
+                          strInvalidFirstName,
+                          Constants.NORMAL_VALIDATION);
+                    },
+                  prefixIcon: Icon(Icons.person,color: Color.fromRGBO(6, 58, 143, 1),),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      'Phone Number*',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  InputBox(labelText: 'Last Name*',
+                    hintText: 'Enter your last name here',
+                    controller: lastName,
+                    validator: (value) {
+                      return Validator.validateFormField(
+                          value,
+                          strErrorEmptyLastName,
+                          strInvalidLastName,
+                          Constants.NORMAL_VALIDATION);
+                    },
+                    prefixIcon: Icon(Icons.person,color: Color.fromRGBO(6, 58, 143, 1),),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 5,
+                  InputBox(labelText: 'Phone Number*',
+                    hintText: 'Enter your 10 digit phone number',
+                    controller: phoneNumber,
+                    validator: (value) {
+                      return Validator.validateFormField(
+                          value,
+                          strErrorEmptyPhone,
+                          strInvalidPhone,
+                          Constants.PHONE_VALIDATION);
+                    },
+                    maxLength:10,
+                    prefixIcon: Icon(Icons.call,color: Color.fromRGBO(6, 58, 143, 1),),
+                   ),
+                  InputBox(labelText: 'Email*',
+                    hintText: 'Your email goes here',
+                    controller: email,
+                    validator: (value) {
+                      return Validator.validateFormField(
+                          value,
+                          strErrorEmptyEmail,
+                          strInvalidEmail,
+                          Constants.EMAIL_VALIDATION);
+                    },
+                    prefixIcon: Icon(Icons.email,color: Color.fromRGBO(6, 58, 143, 1),),
                     ),
-                    child: TextFormField(
-                      controller: phoneNumber,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.phone,
-                        maxLines: 1,
-                        maxLength: 10,
-                        style: TextStyle(fontSize: 16.0),
-                        decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            prefixIcon: Icon(Icons.phone,color: Color.fromRGBO(6, 58, 143, 1),),
-                            hintText: "Enter your 10 digit phone number",
-                            border: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 32.0),
-                            ),
-                            ),
-                      validator: (value) {
-                  return Validator.validateFormField(
-                  value,
-                  strErrorEmptyPhone,
-                  strInvalidPhone,
-                  Constants.PHONE_VALIDATION);
-                  },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      'Email*',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 5,
-                    ),
-                    child: TextFormField(
-                      controller: email,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        maxLines: 1,
-                        style: TextStyle(fontSize: 16.0),
-                        decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            prefixIcon: Icon(Icons.email,color: Color.fromRGBO(6, 58, 143, 1),),
-                            hintText: "Your email goes here",
-                            border: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 32.0),
-                            ),
-
-                        ),
-                     validator: (value) {
-                  return Validator.validateFormField(
-                  value,
-                  strErrorEmptyEmail,
-                  strInvalidEmail,
-                  Constants.EMAIL_VALIDATION);
-                  },),
-                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
                     child: Text(
@@ -299,82 +193,30 @@ class _RegistrationscreenState extends State<Registrationscreen> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      'Password*',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: TextFormField(
-                      controller: password,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.visiblePassword,
-                        maxLines: 1,
-                        style: TextStyle(fontSize: 16.0),
-                        decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                            suffixIcon: Icon(Icons.remove_red_eye,color: Color.fromRGBO(6, 58, 143, 1)),
-                            prefixIcon: Icon(Icons.lock,color: Color.fromRGBO(6, 58, 143, 1)),
-                            hintText: "Password",
-                            border: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 32.0),
-                            ),
-                            ),
-                      validator: (value) {
-                        return Validator.validateFormField(
-                            value,
-                            strErrorEmptyPassword,
-                            strInvalidPassword,
-                            Constants.PASSWORD_VALIDATION);
-                      },),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      'Confirm-Password*',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: TextFormField(
-                      obscureText: true,
-                      controller: confirmPassword,
-
-                        keyboardType: TextInputType.visiblePassword,
-                        maxLines: 1,
-                        style: TextStyle(fontSize: 16.0),
-                        decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-
-                            prefixIcon: Icon(Icons.lock,color: Color.fromRGBO(6, 58, 143, 1)),
-                            hintText: "Password",
-                            border: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 32.0),
-                            ),
-
-                           ),
+                  InputBox(labelText: 'Password*',
+                    hintText: 'Password',
+                    controller: password,
+                    validator: (value) {
+                      return Validator.validateFormField(
+                          value,
+                          strErrorEmptyPassword,
+                          strInvalidPassword,
+                          Constants.PASSWORD_VALIDATION);
+                    },
+                    prefixIcon: Icon(Icons.lock,color: Color.fromRGBO(6, 58, 143, 1),),
+                   ),
+                  InputBox(labelText: 'Confirm Password*',
+                    hintText: 'Password',
+                    controller: confirmPassword,
                     validator:(value) {
                       return Validator.validateFormField(
                           value,
                           strErrorEmptyRePassword,
                           strInvalidPassword,
                           Constants.NORMAL_VALIDATION);
-                    } ,),
-                  ),
+                    } ,
+                    prefixIcon: Icon(Icons.lock,color: Color.fromRGBO(6, 58, 143, 1),),
+                    ),
                 ],
               )),
       ),
